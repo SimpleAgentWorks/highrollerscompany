@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id          String    @id @default(uuid())
+  quantity    Int       @default(1)
+  amount_cents Int      @map("amount_cents")
+  tip_cents   Int       @default(0) @map("tip_cents")
+  status      String    @default("paid") // "paid" | "picked_up"
+  stripe_session_id String? @unique @map("stripe_session_id")
+  created_at  DateTime  @default(now()) @map("created_at")
+  picked_up_at DateTime? @map("picked_up_at")
+
+  @@map("orders")
+}
+
+model Job {
+  id                 String    @id @default(uuid())
+  name               String
+  phone              String
+  email              String?
+  address            String?
+  city               String?
+  state              String?
+  zip                String?
+  job_description    String?   @map("job_description")
+  contact_preference String?   @map("contact_preference")
+  status             String    @default("new")
+  created_at         DateTime  @default(now()) @map("created_at")
+  updated_at         DateTime  @default(now()) @map("updated_at")
+
+  @@map("jobs")
+}

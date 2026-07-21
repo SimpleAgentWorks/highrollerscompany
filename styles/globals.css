@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-black text-white;
+}
+
+.carnival-gradient {
+  background: linear-gradient(135deg, #FF1493 0%, #9D00FF 25%, #00D9FF 50%, #FFD700 75%, #FF6B00 100%);
+}
+
+.carnival-text-gradient {
+  background: linear-gradient(135deg, #FF1493 0%, #9D00FF 25%, #00D9FF 50%, #FFD700 75%, #FF6B00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-overlay {
+  position: relative;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(157, 0, 255, 0.3) 100%);
+}
+
+.service-card {
+  @apply bg-gradient-to-br from-gray-900 to-black border-2 border-carnival-purple hover:border-carnival-cyan transition-all duration-300;
+}
+
+.cta-button {
+  @apply px-8 py-3 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95;
+}
+
+.cta-primary {
+  @apply cta-button carnival-gradient text-black hover:shadow-lg hover:shadow-carnival-pink;
+}
+
+.cta-secondary {
+  @apply cta-button border-2 border-carnival-cyan text-carnival-cyan hover:bg-carnival-cyan hover:text-black;
+}
+
+.section-padding {
+  @apply py-20 px-6 md:px-12 lg:px-20;
+}
