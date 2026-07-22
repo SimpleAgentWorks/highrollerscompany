@@ -17,27 +17,34 @@ const WAX_ADDON = 5000
 const ELECTRICAL_ADDON = 2500
 const WATER_ADDON = 2500
 
+// Multi-vehicle discounts: 5% off 2nd vehicle, 10% off 3rd, 15% off 4th
 function calcTotal(vehicles, electricalOption, waterOption) {
-  let total = 0
-  for (const v of vehicles) {
-    if (v.package === 'interior') {
-      total += INTERIOR_PRICES[v.type] || 20000
-    } else {
-      total += EXTERIOR_BASE
-      if (v.wax) total += WAX_ADDON
-    }
-  }
+  const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15]
+  let vehicleTotal = 0
+  vehicles.forEach((v, idx) => {
+    const base = v.package === 'interior'
+      ? (INTERIOR_PRICES[v.type] || 20000)
+      : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+    const discount = DISCOUNT_TIERS[idx] || 0
+    vehicleTotal += base * (1 - discount)
+  })
+  let total = vehicleTotal
   if (electricalOption === 'hr_brings') total += ELECTRICAL_ADDON
   if (waterOption === 'hr_brings') total += WATER_ADDON
-  return total
+  return Math.round(total)
 }
 
 // ── iMessage ──────────────────────────────────────────────────────────────────
 function sendIMessage(booking) {
-  const vehicleList = booking.vehicles.map(v => {
+  const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15]
+  const vehicleList = booking.vehicles.map((v, idx) => {
     const typeLabel = { '2door': '2-door', '4door': '4-door', 'suv': 'SUV', 'minivan': 'Minivan' }[v.type] || v.type
     const pkg = v.package === 'interior' ? 'Interior' : 'Exterior Wash' + (v.wax ? ' + Wax' : '')
-    return `  • ${typeLabel} — ${pkg}`
+    const base = v.package === 'interior' ? (INTERIOR_PRICES[v.type] || 20000) : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+    const discount = DISCOUNT_TIERS[idx] || 0
+    const price = Math.round(base * (1 - discount))
+    const discLabel = discount > 0 ? ` (${discount * 100}% off)` : ''
+    return `  • ${typeLabel} — ${pkg}${discLabel}: $${(price / 100).toFixed(2)}`
   }).join('\n')
 
   const lines = [

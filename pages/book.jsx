@@ -14,15 +14,28 @@ const WAX_ADDON = 50
 const ELECTRICAL_ADDON = 25
 const WATER_ADDON = 25
 
+// Multi-vehicle discounts: 5% off 2nd vehicle, 10% off 3rd, 15% off 4th
 function calcDetailingTotal(vehicles, electrical, water) {
-  let total = 0
-  for (const v of vehicles) {
-    if (v.package === 'interior') total += INTERIOR_PRICES[v.type] || 200
-    else { total += EXTERIOR_BASE; if (v.wax) total += WAX_ADDON }
-  }
+  const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15] // 0-indexed: 1st=0%, 2nd=5%, 3rd=10%, 4th=15%
+  let vehicleTotal = 0
+  vehicles.forEach((v, idx) => {
+    const base = v.package === 'interior'
+      ? (INTERIOR_PRICES[v.type] || 200)
+      : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+    const discount = DISCOUNT_TIERS[idx] || 0
+    vehicleTotal += base * (1 - discount)
+  })
+  let total = vehicleTotal
   if (electrical === 'hr_brings') total += ELECTRICAL_ADDON
   if (water === 'hr_brings') total += WATER_ADDON
-  return total
+  return Math.round(total)
+}
+
+function calcVehiclePrice(v, idx) {
+  const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15]
+  const base = v.package === 'interior' ? (INTERIOR_PRICES[v.type] || 200) : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+  const discount = DISCOUNT_TIERS[idx] || 0
+  return Math.round(base * (1 - discount))
 }
 
 const VEHICLE_LABELS = { '2door': '2-Door Small Car', '4door': '4-Door Sedan', 'suv': 'SUV', 'minivan': 'Minivan / Suburban' }
@@ -403,14 +416,20 @@ export default function Intake() {
                   <div className="bg-white rounded-xl p-4 border-2 border-pink-200" style={{ borderColor: '#DC5A82' }}>
                     <p className="text-xs font-bold text-gray-400 uppercase mb-2">Estimated Total</p>
                     <div className="space-y-1 text-sm text-gray-700 mb-3">
-                      {vehicles.map((v, idx) => (
-                        <div key={idx} className="flex justify-between">
-                          <span>V{idx+1}: {VEHICLE_LABELS[v.type]} — {v.package === 'interior' ? 'Interior' : 'Exterior'}{v.wax ? ' + Wax' : ''}</span>
-                          <span className="font-semibold">
-                            ${v.package === 'interior' ? INTERIOR_PRICES[v.type] : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)}
-                          </span>
-                        </div>
-                      ))}
+                      {vehicles.map((v, idx) => {
+                        const discPct = [0, 5, 10, 15][idx] || 0
+                        const discLabel = discPct > 0 ? ` (${discPct}% off)` : ''
+                        const price = calcVehiclePrice(v, idx)
+                        const basePrice = v.package === 'interior' ? (INTERIOR_PRICES[v.type] || 200) : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+                        return (
+                          <div key={idx} className="flex justify-between">
+                            <span>V{idx+1}: {VEHICLE_LABELS[v.type]} — {v.package === 'interior' ? 'Interior' : 'Exterior'}{v.wax ? ' + Wax' : ''}{discLabel}</span>
+                            <span className="font-semibold">
+                              {discPct > 0 ? <s className="text-gray-400 mr-1">${basePrice}</s> : null}${price}
+                            </span>
+                          </div>
+                        )
+                      })}
                       {electricalOption === 'hr_brings' && <div className="flex justify-between"><span>Electrical add-on</span><span className="font-semibold">+$25</span></div>}
                       {waterOption === 'hr_brings' && <div className="flex justify-between"><span>Water add-on</span><span className="font-semibold">+$25</span></div>}
                     </div>
