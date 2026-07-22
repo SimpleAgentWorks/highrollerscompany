@@ -371,7 +371,7 @@ export default function Intake() {
                       <button onClick={() => setElectricalOption('hr_brings')}
                         className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${electricalOption === 'hr_brings' ? 'border-pink-500 text-white' : 'border-gray-200 text-gray-600 bg-white'}`}
                         style={electricalOption === 'hr_brings' ? { backgroundColor: '#14143C', borderColor: '#14143C' } : {}}>
-                        ⚡ We Bring (+$25)
+                        ⚡ ADD Brings (+$25)
                       </button>
                     </div>
                     <p className="text-xs text-gray-400 mt-1">We bring a 50-ft extension cord — you provide the outlet.</p>
@@ -389,7 +389,7 @@ export default function Intake() {
                       <button onClick={() => setWaterOption('hr_brings')}
                         className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${waterOption === 'hr_brings' ? 'border-pink-500 text-white' : 'border-gray-200 text-gray-600 bg-white'}`}
                         style={waterOption === 'hr_brings' ? { backgroundColor: '#14143C', borderColor: '#14143C' } : {}}>
-                        💧 We Bring (+$25)
+                        💧 ADD Brings (+$25)
                       </button>
                     </div>
                   </div>
