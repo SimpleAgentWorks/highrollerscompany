@@ -33,7 +33,10 @@ function calcDetailingTotal(vehicles, electrical, water) {
 
 function calcVehiclePrice(v, idx) {
   const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15]
-  const base = v.package === 'interior' ? (INTERIOR_PRICES[v.type] || 200) : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+  let base
+  if (v.package === 'interior') base = INTERIOR_PRICES[v.type] || 200
+  else if (v.package === 'exterior') base = EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+  else base = Math.round((INTERIOR_PRICES[v.type] || 200 + EXTERIOR_BASE) * 0.85)
   const discount = DISCOUNT_TIERS[idx] || 0
   return Math.round(base * (1 - discount))
 }
@@ -339,6 +342,7 @@ export default function Intake() {
                             className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-pink-400 bg-white" style={{ color: '#1E1E1E' }}>
                             <option value="interior">Interior Package</option>
                             <option value="exterior">Exterior Wash</option>
+                            <option value="combo">Interior + Exterior Combo (Save 15%)</option>
                           </select>
                         </div>
                         {v.package === 'exterior' && (
@@ -347,6 +351,9 @@ export default function Intake() {
                               className="w-4 h-4 accent-pink-500" />
                             Add Wax (+$50)
                           </label>
+                        )}
+                        {v.package === 'combo' && (
+                          <p className="text-xs text-green-600 font-medium pl-4">Interior + Exterior + Tire Shine included</p>
                         )}
                       </div>
                     ))}
@@ -364,7 +371,7 @@ export default function Intake() {
                       <button onClick={() => setElectricalOption('hr_brings')}
                         className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${electricalOption === 'hr_brings' ? 'border-pink-500 text-white' : 'border-gray-200 text-gray-600 bg-white'}`}
                         style={electricalOption === 'hr_brings' ? { backgroundColor: '#14143C', borderColor: '#14143C' } : {}}>
-                        ⚡ HR Brings (+$25)
+                        ⚡ We Bring (+$25)
                       </button>
                     </div>
                     <p className="text-xs text-gray-400 mt-1">We bring a 50-ft extension cord — you provide the outlet.</p>
@@ -382,7 +389,7 @@ export default function Intake() {
                       <button onClick={() => setWaterOption('hr_brings')}
                         className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${waterOption === 'hr_brings' ? 'border-pink-500 text-white' : 'border-gray-200 text-gray-600 bg-white'}`}
                         style={waterOption === 'hr_brings' ? { backgroundColor: '#14143C', borderColor: '#14143C' } : {}}>
-                        💧 HR Brings (+$25)
+                        💧 We Bring (+$25)
                       </button>
                     </div>
                   </div>
@@ -420,10 +427,13 @@ export default function Intake() {
                         const discPct = [0, 5, 10, 15][idx] || 0
                         const discLabel = discPct > 0 ? ` (${discPct}% off)` : ''
                         const price = calcVehiclePrice(v, idx)
-                        const basePrice = v.package === 'interior' ? (INTERIOR_PRICES[v.type] || 200) : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+                        let basePrice
+                        if (v.package === 'interior') basePrice = INTERIOR_PRICES[v.type] || 200
+                        else if (v.package === 'exterior') basePrice = EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+                        else basePrice = Math.round((INTERIOR_PRICES[v.type] || 200 + EXTERIOR_BASE) * 0.85)
                         return (
                           <div key={idx} className="flex justify-between">
-                            <span>V{idx+1}: {VEHICLE_LABELS[v.type]} — {v.package === 'interior' ? 'Interior' : 'Exterior'}{v.wax ? ' + Wax' : ''}{discLabel}</span>
+                            <span>V{idx+1}: {VEHICLE_LABELS[v.type]} — {v.package === 'interior' ? 'Interior' : v.package === 'exterior' ? 'Exterior' : 'Combo'}{v.package === 'exterior' && v.wax ? ' + Wax' : ''}{discLabel}</span>
                             <span className="font-semibold">
                               {discPct > 0 ? <s className="text-gray-400 mr-1">${basePrice}</s> : null}${price}
                             </span>

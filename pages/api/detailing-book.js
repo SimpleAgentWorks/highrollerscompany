@@ -22,9 +22,15 @@ function calcTotal(vehicles, electricalOption, waterOption) {
   const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15]
   let vehicleTotal = 0
   vehicles.forEach((v, idx) => {
-    const base = v.package === 'interior'
-      ? (INTERIOR_PRICES[v.type] || 20000)
-      : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+    let base
+    if (v.package === 'interior') {
+      base = INTERIOR_PRICES[v.type] || 20000
+    } else if (v.package === 'exterior') {
+      base = EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
+    } else {
+      // combo: interior + exterior at 15% bundle
+      base = Math.round((INTERIOR_PRICES[v.type] || 20000 + EXTERIOR_BASE) * 0.85)
+    }
     const discount = DISCOUNT_TIERS[idx] || 0
     vehicleTotal += base * (1 - discount)
   })
@@ -39,7 +45,7 @@ function sendIMessage(booking) {
   const DISCOUNT_TIERS = [0, 0.05, 0.10, 0.15]
   const vehicleList = booking.vehicles.map((v, idx) => {
     const typeLabel = { '2door': '2-door', '4door': '4-door', 'suv': 'SUV', 'minivan': 'Minivan' }[v.type] || v.type
-    const pkg = v.package === 'interior' ? 'Interior' : 'Exterior Wash' + (v.wax ? ' + Wax' : '')
+    const pkg = v.package === 'interior' ? 'Interior' : v.package === 'exterior' ? 'Exterior Wash' + (v.wax ? ' + Wax' : '') : 'Combo'
     const base = v.package === 'interior' ? (INTERIOR_PRICES[v.type] || 20000) : EXTERIOR_BASE + (v.wax ? WAX_ADDON : 0)
     const discount = DISCOUNT_TIERS[idx] || 0
     const price = Math.round(base * (1 - discount))
@@ -83,7 +89,7 @@ function sendIMessage(booking) {
 function sendDiscord(booking) {
   const vehicleList = booking.vehicles.map(v => {
     const typeLabel = { '2door': '2-door', '4door': '4-door', 'suv': 'SUV', 'minivan': 'Minivan' }[v.type] || v.type
-    const pkg = v.package === 'interior' ? 'Interior' : 'Exterior' + (v.wax ? ' + Wax' : '')
+    const pkg = v.package === 'interior' ? 'Interior' : v.package === 'exterior' ? 'Exterior' + (v.wax ? ' + Wax' : '') : 'Combo'
     return `  • ${typeLabel} — ${pkg}`
   }).join('\n')
 
