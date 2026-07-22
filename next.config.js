@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // NOTE: 'output: export' removed — static export breaks API routes.
-  // The site must run as a Next.js server (next start / next dev) to use /api/*
   images: {
     unoptimized: true,
+  },
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': require('path').resolve(__dirname),
+    }
+    return config
   },
   async redirects() {
     return [

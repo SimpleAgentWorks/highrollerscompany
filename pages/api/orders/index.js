@@ -1,4 +1,4 @@
-import pool from '../../../lib/db';
+import pool from '@/lib/db';
 
 export default async function handler(req, res) {
   const { pin, status, dateFrom, dateTo } = req.query;

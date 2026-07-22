@@ -1,7 +1,7 @@
 // POST /api/detailing-book — customer submits auto-detailing booking
 // Saves to DB, creates Google Calendar event (if configured), sends alerts
 
-import pool from '../../../lib/db'
+import pool from '@/lib/db'
 import { execSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'

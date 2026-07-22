@@ -2,7 +2,7 @@
 // POST /api/detailing-slots — admin creates slot (needs PIN)
 // DELETE /api/detailing-slots?id=xxx — admin deletes slot (needs PIN)
 
-import pool from '../../../lib/db'
+import pool from '@/lib/db'
 
 const ADMIN_PIN = process.env.DASHBOARD_PIN || '369636'
 
