@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import pool from '@/lib/db';
+import pool from '../../../lib/db';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
