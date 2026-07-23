@@ -12,6 +12,21 @@ const nextConfig = {
     return config
   },
   async redirects() {
+<<<<<<< HEAD
+    return []
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // autodetaildelivered.com serves the /auto-detail-delivered/* pages
+        {
+          has: [{ type: 'host', value: 'autodetaildelivered\\.com' }],
+          source: '/:path*',
+          destination: '/auto-detail-delivered/:path*',
+        },
+      ],
+    }
+=======
     return [
       {
         source: '/book',
@@ -19,6 +34,7 @@ const nextConfig = {
         permanent: false,
       },
     ]
+>>>>>>> origin/main
   },
 }
 

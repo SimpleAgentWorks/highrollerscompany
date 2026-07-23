@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import pool from '@/lib/db';
+=======
 import pool from '../../../lib/db';
+>>>>>>> origin/main
 
 // In-memory settings cache (30-second TTL) to avoid DB round-trips on every public request
 let settingsCache = null;
