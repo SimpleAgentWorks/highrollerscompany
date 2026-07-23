@@ -12,7 +12,6 @@ const nextConfig = {
     return config
   },
   async redirects() {
-<<<<<<< HEAD
     return []
   },
   async rewrites() {
@@ -26,15 +25,6 @@ const nextConfig = {
         },
       ],
     }
-=======
-    return [
-      {
-        source: '/book',
-        destination: 'https://autodetaildelivered.com/auto-detail-delivered/book',
-        permanent: false,
-      },
-    ]
->>>>>>> origin/main
   },
 }
 
