@@ -36,6 +36,8 @@ export default function AutoDetailBook() {
   });
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [attemptedStep1, setAttemptedStep1] = useState(false);
+  const [attemptedStep2, setAttemptedStep2] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -103,8 +105,16 @@ export default function AutoDetailBook() {
     }
   };
 
-  const isStep1Valid = () =>
-    form.name.trim() && form.phone.trim() && form.email.trim() && form.email.includes('@');
+  const step1Errors = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = 'Please enter your full name';
+    if (!form.phone.trim()) e.phone = 'Please enter your phone number';
+    const email = form.email.trim();
+    if (!email) e.email = 'Please enter your email';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'Please enter a complete email (e.g. you@example.com)';
+    return e;
+  };
+  const isStep1Valid = () => Object.keys(step1Errors()).length === 0;
   const isStep2Valid = () =>
     form.package.trim() && form.vehicleInfo.trim();
 
@@ -229,14 +239,32 @@ export default function AutoDetailBook() {
                   </div>
                 </div>
               </div>
+              {attemptedStep1 && (() => {
+                const errs = step1Errors();
+                if (Object.keys(errs).length === 0) return null;
+                return (
+                  <div className="mt-4 p-3 rounded-lg text-sm" style={{ backgroundColor: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.4)', color: '#fca5a5' }}>
+                    <div className="font-semibold mb-1" style={{ color: '#ef4444' }}>Please fix the following:</div>
+                    <ul className="list-disc list-inside space-y-0.5">
+                      {Object.values(errs).map((msg, i) => <li key={i}>{msg}</li>)}
+                    </ul>
+                  </div>
+                );
+              })()}
               <button
-                onClick={() => isStep1Valid() && setStep(2)}
-                disabled={!isStep1Valid()}
+                onClick={() => {
+                  if (isStep1Valid()) {
+                    setStep(2);
+                    setAttemptedStep1(false);
+                  } else {
+                    setAttemptedStep1(true);
+                  }
+                }}
                 className="mt-8 w-full py-4 rounded-xl text-base font-bold"
                 style={{
                   backgroundColor: isStep1Valid() ? '#d4af37' : 'rgba(255,255,255,0.1)',
                   color: isStep1Valid() ? '#080808' : 'rgba(255,255,255,0.3)',
-                  cursor: isStep1Valid() ? 'pointer' : 'not-allowed',
+                  cursor: 'pointer',
                 }}
               >
                 Next: Service Details →
