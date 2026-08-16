@@ -10,7 +10,24 @@ const CAR_IMAGES = {
 
 export default function AutoDetailHome() {
   return (
-    <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif' }}>
+    <>
+      <Head>
+        <title>Auto Detail Delivered — Mobile Car Detailing in Wheaton, IL</title>
+        <meta name="description" content="Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150. Book online in minutes." />
+        <link rel="canonical" href="https://autodetaildelivered.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Auto Detail Delivered — Mobile Car Detailing in Wheaton, IL" />
+        <meta property="og:description" content="Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150. Book online in minutes." />
+        <meta property="og:url" content="https://autodetaildelivered.com/" />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85" />
+        <meta property="og:site_name" content="Auto Detail Delivered" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Auto Detail Delivered — Mobile Car Detailing in Wheaton, IL" />
+        <meta name="twitter:description" content="Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif' }}>
 
       {/* ════════════════════════════════════════════ HERO ═══ */}
       <section style={{
@@ -363,5 +380,6 @@ export default function AutoDetailHome() {
         </div>
       </footer>
     </div>
+    </>
   )
 }

@@ -4,7 +4,22 @@ import Image from 'next/image'
 
 export default function AutoDetailContact() {
   return (
-    <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif', minHeight: '100vh' }}>
+    <>
+      <Head>
+        <title>Contact — Auto Detail Delivered | Wheaton, IL Mobile Detailing</title>
+        <meta name="description" content="Get in touch with Auto Detail Delivered. Mobile car detailing in Wheaton, IL and DuPage County. Book online, message us, or call for a quote." />
+        <link rel="canonical" href="https://autodetaildelivered.com/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact Auto Detail Delivered — Mobile Detailing Wheaton, IL" />
+        <meta property="og:description" content="Get in touch with Auto Detail Delivered. Mobile car detailing in Wheaton, IL and DuPage County." />
+        <meta property="og:url" content="https://autodetaildelivered.com/contact" />
+        <meta property="og:site_name" content="Auto Detail Delivered" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Contact Auto Detail Delivered — Mobile Detailing Wheaton, IL" />
+        <meta name="twitter:description" content="Get in touch with Auto Detail Delivered. Mobile car detailing in Wheaton, IL and DuPage County." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif', minHeight: '100vh' }}>
 
       {/* Header */}
       <header style={{
@@ -148,5 +163,6 @@ export default function AutoDetailContact() {
         <p style={{ color: '#444', fontSize: '0.85rem' }}>Wheaton, IL · Serving DuPage County & Surrounding Areas</p>
       </footer>
     </div>
+    </>
   )
 }

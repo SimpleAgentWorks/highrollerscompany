@@ -145,7 +145,17 @@ export default function AutoDetailBook() {
   return (
     <>
       <Head>
-        <title>Book Auto Detail — Auto Detail Delivered</title>
+        <title>Book Auto Detail — Auto Detail Delivered | Wheaton, IL</title>
+        <meta name="description" content="Book your mobile auto detailing appointment online. Interior, exterior, and full combo packages starting at $150. Serving Wheaton, IL and DuPage County." />
+        <link rel="canonical" href="https://autodetaildelivered.com/book" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Book Auto Detail — Auto Detail Delivered | Wheaton, IL" />
+        <meta property="og:description" content="Book your mobile auto detailing appointment online. Interior, exterior, and full combo packages starting at $150." />
+        <meta property="og:url" content="https://autodetaildelivered.com/book" />
+        <meta property="og:site_name" content="Auto Detail Delivered" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Book Auto Detail — Auto Detail Delivered | Wheaton, IL" />
+        <meta name="twitter:description" content="Book your mobile auto detailing appointment online. Interior, exterior, and full combo packages starting at $150." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
