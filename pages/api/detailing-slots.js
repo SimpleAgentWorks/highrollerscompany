@@ -7,20 +7,39 @@ import pool from '@/lib/db'
 const ADMIN_PIN = process.env.DASHBOARD_PIN || '369636'
 
 export default async function handler(req, res) {
-  // ── GET: return available slots ────────────────────────────────────────────
+  // ── GET: return slots (with optional date range filter) ─────────────────────
   if (req.method === 'GET') {
     try {
+      const { from, to, include_unavailable } = req.query
+
+      // Build dynamic query based on filters
+      let where = ['slot_date >= CURRENT_DATE']
+      const params = []
+
+      if (from) {
+        params.push(from)
+        where.push(`slot_date >= $${params.length}`)
+      }
+      if (to) {
+        params.push(to)
+        where.push(`slot_date <= $${params.length}`)
+      }
+      // By default, only show slots with capacity (matches customer-facing behavior)
+      // Admin UI uses include_unavailable=1 to see all slots
+      if (!include_unavailable) {
+        where.push('is_available = TRUE')
+        where.push('(max_vehicles - booked_vehicles) > 0')
+      }
+
       const result = await pool.query(`
         SELECT id, slot_date, time_slot, max_vehicles, booked_vehicles,
                location_label, is_available,
                (max_vehicles - booked_vehicles) as vehicles_remaining
         FROM detailing_slots
-        WHERE slot_date >= CURRENT_DATE
-          AND is_available = TRUE
-          AND (max_vehicles - booked_vehicles) > 0
+        WHERE ${where.join(' AND ')}
         ORDER BY slot_date ASC,
           CASE time_slot WHEN 'morning' THEN 1 WHEN 'afternoon' THEN 2 END
-      `)
+      `, params)
       return res.status(200).json({ slots: result.rows })
     } catch (err) {
       console.error('[detailing-slots GET]', err.message)
