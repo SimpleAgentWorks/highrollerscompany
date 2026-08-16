@@ -17,9 +17,9 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        // autodetaildelivered.com serves the /auto-detail-delivered/* pages
+        // autodetaildelivered.com serves the /auto-detail-delivered/* pages (with optional www. prefix)
         {
-          has: [{ type: 'host', value: 'autodetaildelivered\\.com' }],
+          has: [{ type: 'host', value: '(www\\.)?autodetaildelivered\\.com' }],
           source: '/:path*',
           destination: '/auto-detail-delivered/:path*',
         },
