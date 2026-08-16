@@ -18,10 +18,12 @@ const nextConfig = {
     return {
       beforeFiles: [
         // autodetaildelivered.com serves the /auto-detail-delivered/* pages (with optional www. prefix)
+        // Note: exclude public asset paths (/robots.txt, /sitemap.xml, /favicon.ico) so they
+        // are served directly from /public/ instead of being rewritten to /auto-detail-delivered/*
         {
           has: [{ type: 'host', value: '(www\\.)?autodetaildelivered\\.com' }],
-          source: '/:path*',
-          destination: '/auto-detail-delivered/:path*',
+          source: '/:path((?!robots\\.txt|sitemap\\.xml|favicon\\.ico).*)',
+          destination: '/auto-detail-delivered/:path',
         },
       ],
     }
