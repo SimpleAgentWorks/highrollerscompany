@@ -22,7 +22,7 @@ const nextConfig = {
         // are served directly from /public/ instead of being rewritten to /auto-detail-delivered/*
         {
           has: [{ type: 'host', value: '(www\\.)?autodetaildelivered\\.com' }],
-          source: '/:path((?!robots\\.txt|sitemap\\.xml|favicon\\.ico).*)',
+          source: '/:path((?!robots\\.txt|sitemap\\.xml|favicon\\.ico|images|_next).*)',
           destination: '/auto-detail-delivered/:path',
         },
       ],
