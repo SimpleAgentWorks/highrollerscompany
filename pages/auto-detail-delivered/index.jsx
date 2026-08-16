@@ -19,12 +19,15 @@ export default function AutoDetailHome() {
         <meta property="og:title" content="Auto Detail Delivered — Mobile Car Detailing in Wheaton, IL" />
         <meta property="og:description" content="Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150. Book online in minutes." />
         <meta property="og:url" content="https://autodetaildelivered.com/" />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85" />
+        <meta property="og:image" content="https://autodetaildelivered.com/images/brand/og-image.png" />
+        <meta property="og:image:width" content="1536" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Auto Detail Delivered — premium mobile car detailing" />
         <meta property="og:site_name" content="Auto Detail Delivered" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Auto Detail Delivered — Mobile Car Detailing in Wheaton, IL" />
         <meta name="twitter:description" content="Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150." />
-        <meta name="twitter:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85" />
+        <meta name="twitter:image" content="https://autodetaildelivered.com/images/brand/og-image.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           type="application/ld+json"
@@ -36,8 +39,8 @@ export default function AutoDetailHome() {
               name: 'Auto Detail Delivered',
               description: 'Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150.',
               url: 'https://autodetaildelivered.com',
-              logo: 'https://autodetaildelivered.com/favicon.ico',
-              image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85',
+              logo: 'https://autodetaildelivered.com/images/brand/gbp-profile.png',
+              image: 'https://autodetaildelivered.com/images/brand/og-image.png',
               telephone: '+1-630-456-0567',
               priceRange: '$$',
               address: {
