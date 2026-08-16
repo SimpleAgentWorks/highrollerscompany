@@ -26,6 +26,91 @@ export default function AutoDetailHome() {
         <meta name="twitter:description" content="Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'AutoDetailing',
+              '@id': 'https://autodetaildelivered.com/#business',
+              name: 'Auto Detail Delivered',
+              description: 'Professional mobile auto detailing serving Wheaton, IL and DuPage County. We come to you — interior & exterior detailing starting at $150.',
+              url: 'https://autodetaildelivered.com',
+              logo: 'https://autodetaildelivered.com/favicon.ico',
+              image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=85',
+              telephone: '+1-630-456-0567',
+              priceRange: '$$',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Wheaton',
+                addressRegion: 'IL',
+                addressCountry: 'US'
+              },
+              areaServed: [
+                { '@type': 'City', name: 'Wheaton' },
+                { '@type': 'City', name: 'Glen Ellyn' },
+                { '@type': 'City', name: 'Carol Stream' },
+                { '@type': 'City', name: 'Lombard' },
+                { '@type': 'City', name: 'Naperville' },
+                { '@type': 'City', name: 'Winfield' },
+                { '@type': 'AdministrativeArea', name: 'DuPage County' }
+              ],
+              openingHoursSpecification: [
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                  opens: '08:00',
+                  closes: '18:00'
+                }
+              ],
+              sameAs: [
+                'https://www.facebook.com/autodetaildelivered',
+                'https://www.instagram.com/autodetaildelivered'
+              ],
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'Mobile Auto Detailing Services',
+                itemListElement: [
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Interior Detail',
+                      description: 'Full vacuum, surface wipe, glass cleaning, air freshener.'
+                    },
+                    priceSpecification: {
+                      '@type': 'PriceSpecification',
+                      priceCurrency: 'USD',
+                      minPrice: 150,
+                      maxPrice: 250
+                    }
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Exterior Wash',
+                      description: 'Hand wash, dry, tire shine, and window cleaning. Wax available for +$50.'
+                    },
+                    priceSpecification: {
+                      '@type': 'PriceSpecification',
+                      priceCurrency: 'USD',
+                      price: 50
+                    }
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Full Combo',
+                      description: 'Interior + Exterior at a bundle price. The complete detail experience.'
+                    }
+                  }
+                ]
+              }
+            })
+          }}
+        />
       </Head>
       <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif' }}>
 
@@ -102,20 +187,18 @@ export default function AutoDetailHome() {
             textShadow: '0 4px 60px rgba(0,0,0,0.9)',
             WebkitTextStroke: '0px'
           }}>
-            Auto Detail
-          </h1>
-          <h1 style={{
-            fontFamily: '"Playfair Display", serif',
-            fontSize: 'clamp(3rem, 8vw, 6.5rem)',
-            fontWeight: 900,
-            color: '#d4af37',
-            letterSpacing: '-0.03em',
-            lineHeight: 0.95,
-            marginBottom: '2rem',
-            textShadow: '0 4px 40px rgba(212,175,55,0.3)',
-            WebkitTextStroke: '0px'
-          }}>
-            Delivered
+            Auto Detail <span style={{
+              fontFamily: '"Playfair Display", serif',
+              fontSize: 'clamp(3rem, 8vw, 6.5rem)',
+              fontWeight: 900,
+              color: '#d4af37',
+              letterSpacing: '-0.03em',
+              lineHeight: 0.95,
+              marginBottom: '2rem',
+              textShadow: '0 4px 40px rgba(212,175,55,0.3)',
+              WebkitTextStroke: '0px',
+              display: 'inline-block'
+            }}>Delivered</span>
           </h1>
 
           <p style={{

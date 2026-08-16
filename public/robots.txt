@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /staff/
+Disallow: /dashboard/
+Disallow: /api/
+
+Sitemap: https://autodetaildelivered.com/sitemap.xml

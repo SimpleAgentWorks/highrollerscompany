@@ -3,3 +3,5 @@ node_modules/
 .vercel
 .env*.local
 *.log
+.DS_Store
+pages/.DS_Store
