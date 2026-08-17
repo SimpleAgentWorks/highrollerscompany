@@ -94,7 +94,8 @@ export default function AutoDetailBook() {
         }),
       });
       if (res.ok) {
-        setSubmitted(true);
+        // Redirect to dedicated thank-you page (used for Google Ads conversion tracking)
+        window.location.href = '/auto-detail-delivered/book/thank-you';
       } else {
         alert('Something went wrong. Please try again.');
       }
