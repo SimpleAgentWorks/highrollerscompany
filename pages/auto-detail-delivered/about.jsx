@@ -18,6 +18,96 @@ export default function AutoDetailAbout() {
         <meta name="twitter:title" content="About Auto Detail Delivered — Mobile Detailing Wheaton, IL" />
         <meta name="twitter:description" content="Professional, insured mobile car detailing serving Wheaton and DuPage County. We come to you." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://autodetaildelivered.com/',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'About',
+                  item: 'https://autodetaildelivered.com/about',
+                },
+              ],
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'Do I need to provide water or electricity?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'No. Our mobile detailing team arrives fully equipped with their own water and power. You don\'t need to provide anything — just access to the vehicle.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How long does a full detail take?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Interior detail typically takes 60-90 minutes. Exterior wash takes 30-45 minutes. Full combo (interior + exterior) is usually 90-120 minutes.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Do you come to my location?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. We come to your home, office, or any location in Wheaton and DuPage County. No need to drop off your car at a shop.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What areas do you serve?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Wheaton, Glen Ellyn, Carol Stream, Lombard, Naperville, Winfield, and surrounding DuPage County communities.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How does payment work?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Pay when the detail is done. We accept cash, card, or Venmo. No deposit required to.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What\'s included in the price?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'The price you see is the price you pay. No surprises, no upsells on the day of service. Interior detail starts at $150 for sedans; exterior wash starts at $50 with optional wax add-on.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Are your detailers insured?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes. Every detailer on our team is trained, insured, and equipped with professional-grade products and tools.',
+                  },
+                },
+              ],
+            })
+          }}
+        />
       </Head>
       <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif', minHeight: '100vh' }}>
 
@@ -162,6 +252,119 @@ export default function AutoDetailAbout() {
                 textTransform: 'uppercase'
               }}>
                 Book Now →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════ FAQ ═══ */}
+        <section style={{
+          backgroundColor: '#000',
+          padding: '5rem 2rem',
+          borderTop: '1px solid #1a1a1a',
+        }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <h2 style={{
+              fontFamily: '"Playfair Display", serif',
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              fontWeight: 800,
+              color: '#f5f5f5',
+              textAlign: 'center',
+              marginBottom: '0.75rem',
+              letterSpacing: '-0.02em',
+            }}>
+              Frequently Asked Questions
+            </h2>
+            <p style={{
+              color: '#888',
+              textAlign: 'center',
+              marginBottom: '3rem',
+              fontSize: '0.95rem',
+            }}>
+              Everything you need to know before booking
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {[
+                {
+                  q: 'Do I need to provide water or electricity?',
+                  a: 'No. Our mobile detailing team arrives fully equipped with their own water and power. You don\'t need to provide anything — just access to the vehicle.',
+                },
+                {
+                  q: 'How long does a full detail take?',
+                  a: 'Interior detail typically takes 60–90 minutes. Exterior wash takes 30–45 minutes. Full combo (interior + exterior) is usually 90–120 minutes.',
+                },
+                {
+                  q: 'Do you come to my location?',
+                  a: 'Yes. We come to your home, office, or any location in Wheaton and DuPage County. No need to drop off your car at a shop.',
+                },
+                {
+                  q: 'What areas do you serve?',
+                  a: 'Wheaton, Glen Ellyn, Carol Stream, Lombard, Naperville, Winfield, and surrounding DuPage County communities.',
+                },
+                {
+                  q: 'How does payment work?',
+                  a: 'Pay when the detail is done. We accept cash, card, or Venmo. No deposit required.',
+                },
+                {
+                  q: 'What\'s included in the price?',
+                  a: 'The price you see is the price you pay. No surprises, no upsells on the day of service. Interior detail starts at $150 for sedans; exterior wash starts at $50 with optional wax add-on.',
+                },
+                {
+                  q: 'Are your detailers insured?',
+                  a: 'Yes. Every detailer on our team is trained, insured, and equipped with professional-grade products and tools.',
+                },
+              ].map((item, i) => (
+                <details key={i} style={{
+                  backgroundColor: '#111',
+                  border: '1px solid #2a2a2a',
+                  borderRadius: '12px',
+                  padding: '1rem 1.25rem',
+                  cursor: 'pointer',
+                }}>
+                  <summary style={{
+                    fontWeight: 700,
+                    color: '#f5f5f5',
+                    fontSize: '1rem',
+                    listStyle: 'none',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}>
+                    <span>{item.q}</span>
+                    <span style={{ color: '#d4af37', fontSize: '1.25rem', marginLeft: '1rem' }}>+</span>
+                  </summary>
+                  <p style={{
+                    color: '#aaa',
+                    fontSize: '0.95rem',
+                    lineHeight: 1.7,
+                    marginTop: '0.75rem',
+                    marginBottom: 0,
+                  }}>
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+              <p style={{ color: '#888', fontSize: '0.95rem', marginBottom: '1rem' }}>
+                Still have questions?
+              </p>
+              <Link href="/auto-detail-delivered/contact" style={{
+                display: 'inline-block',
+                backgroundColor: 'transparent',
+                color: '#d4af37',
+                border: '1px solid #d4af37',
+                padding: '0.875rem 2rem',
+                borderRadius: '3px',
+                fontWeight: 700,
+                fontSize: '0.9rem',
+                textDecoration: 'none',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+              }}>
+                Contact Us
               </Link>
             </div>
           </div>

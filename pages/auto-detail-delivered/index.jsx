@@ -34,6 +34,23 @@ export default function AutoDetailHome() {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://autodetaildelivered.com/',
+                },
+              ],
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
               '@type': 'AutoDetailing',
               '@id': 'https://autodetaildelivered.com/#business',
               name: 'Auto Detail Delivered',
@@ -208,11 +225,21 @@ export default function AutoDetailHome() {
             color: '#aaa',
             fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
             fontWeight: 400,
-            marginBottom: '3rem',
+            marginBottom: '1rem',
             letterSpacing: '0.05em',
             textTransform: 'uppercase'
           }}>
             Premium Mobile Detailing — We Come To You
+          </p>
+
+          <p style={{
+            color: '#d4af37',
+            fontSize: 'clamp(0.85rem, 1.5vw, 1rem)',
+            fontWeight: 600,
+            marginBottom: '3rem',
+            letterSpacing: '0.05em',
+          }}>
+            Wheaton, IL · Serving DuPage County
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>

@@ -158,6 +158,29 @@ export default function AutoDetailBook() {
         <meta name="twitter:title" content="Book Auto Detail — Auto Detail Delivered | Wheaton, IL" />
         <meta name="twitter:description" content="Book your mobile auto detailing appointment online. Interior, exterior, and full combo packages starting at $150." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://autodetaildelivered.com/',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Book',
+                  item: 'https://autodetaildelivered.com/book',
+                },
+              ],
+            })
+          }}
+        />
       </Head>
 
       <div className="min-h-screen" style={{ backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif' }}>

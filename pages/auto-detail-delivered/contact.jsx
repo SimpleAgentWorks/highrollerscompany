@@ -18,6 +18,29 @@ export default function AutoDetailContact() {
         <meta name="twitter:title" content="Contact Auto Detail Delivered — Mobile Detailing Wheaton, IL" />
         <meta name="twitter:description" content="Get in touch with Auto Detail Delivered. Mobile car detailing in Wheaton, IL and DuPage County." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://autodetaildelivered.com/',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Contact',
+                  item: 'https://autodetaildelivered.com/contact',
+                },
+              ],
+            })
+          }}
+        />
       </Head>
       <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0', backgroundColor: '#080808', color: '#f5f5f5', fontFamily: 'Inter, sans-serif', minHeight: '100vh' }}>
 
